@@ -1,0 +1,109 @@
+body {
+    overflow-y: scroll;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar-nav .nav-link {
+    font-size: 14px;
+}
+
+.container {
+    margin-top: -60px;
+}
+
+.car-carousel {
+    margin-top: 80px;
+    position: relative; /* Добавьте position: relative; для слайдера */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.remove-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.comparison-title {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.comparison-title,
+.comparison-options label {
+    color: #0b5ed7;
+}
+
+.comparison-options {
+    position: absolute;
+    right: 530px;
+    margin-top: -40px;
+    font-size: 15px;
+}
+
+h2 {
+    margin-bottom: 70px;
+    margin-left: 530px;
+}
+
+.footer-distributed {
+    bottom: 0;
+}
+
+.content {
+    margin-bottom: 100px; /* Замените 100px на высоту вашего слайдера */
+}
+
+.navbar {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    position: relative; /* Изменено на relative */
+    margin-top: 50px; /* Добавлен отступ сверху */
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important; /* Цвет текста ссылок в навигации */
+}
+
+/*.navbar-brand {*/
+/*    color: #0a58ca; !* Установить цвет текста бренда на навигационной панели (белый, например) *!*/
+/*}*/
+
+/* CSS для сдвига навигационной панели влево */
+/*.navbar-nav {*/
+/*    justify-content: right;*/
+/*}*/
+
+.navbar-nav {
+    margin-right: -155px !important;
+}
+
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-brand {
+    margin-right: 15px; /* Измените значение согласно вашим требованиям */
+    margin-left: -148px; /* Добавлено для уменьшения отступа слева */
+}
