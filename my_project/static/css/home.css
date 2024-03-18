@@ -1,0 +1,11 @@
+body {
+    overflow-y: hidden; /* Запретить вертикальную прокрутку */
+}
+
+.navbar-brand {
+    margin-left: -62px; /* Добавлено для уменьшения отступа слева */
+}
+
+.navbar-nav {
+    margin-right: -55px !important;
+}
