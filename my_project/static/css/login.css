@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin: 0;
+    margin-left: 5%;
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+body::before {
+    left: 0;
+    background-image: url('/static/images/left-home-background.jpg');
+}
+
+body::after {
+    right: 0;
+    background-image: url('/static/images/right-home-background.jpg');
+}
+
+.container {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.text-right {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.form-container {
+    max-width: 300px;
+    margin-left: auto; /* Добавить эту строку для правильного выравнивания вправо */
+    margin-right: 0;   /* Добавить эту строку для правильного выравнивания вправо */
+}
+
+.alert {
+    margin-top: 2%;
+}
+
+.form-group.row {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-size: 18px; /* Задайте желаемый размер шрифта */
+    font-weight: bold; /* Добавьте жирное начертание для выделения текста */
+    color: #333; /* Задайте цвет текста */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px; /* Добавьте отступы вокруг текста внутри поля */
+    margin-top: 0px; /* Добавьте небольшой отступ сверху для более приятного вида */
+    font-size: 16px; /* Задайте размер шрифта для текста внутри поля */
+    border: 1px solid #ccc; /* Добавьте границу для поля */
+    border-radius: 5px; /* Закруглите углы поля */
+}
+
+.form-group.row.address-group {
+    margin-bottom: 1rem;
+}
+
+.form-group.row.address-group label {
+    margin-bottom: 0;
+}
+
+.form-group.row.address-group input {
+    width: 50%;
+    margin-right: 0; /* Убрать отступ между полем ввода и следующим элементом */
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-left: 0;
+    }
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .container {
+        margin-top: 10%;
+    }
+
+    .alert {
+        margin-top: 5%;
+    }
+
+    .form-container {
+        max-width: 100%; /* Ширина формы на мобильных устройствах будет 100% */
+    }
+}
+
