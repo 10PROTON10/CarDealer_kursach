@@ -1,0 +1,169 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Registration</title>-->
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #f8f9fa;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            margin-top: 100px;-->
+<!--        }-->
+
+<!--        form {-->
+<!--            max-width: 400px;-->
+<!--            margin: auto;-->
+<!--        }-->
+
+<!--        .alert {-->
+<!--            margin-top: 10px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <h2>Registration</h2>-->
+<!--    <form method="post" action="{% url 'register' %}">-->
+<!--        {% csrf_token %}-->
+
+<!--        {% if form.errors %}-->
+<!--            <div class="alert alert-danger" role="alert">-->
+<!--                {{ form.errors }}-->
+<!--            </div>-->
+<!--        {% endif %}-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="id_username">Username</label>-->
+<!--            {{ form.username }}-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="id_email">Email</label>-->
+<!--            {{ form.email }}-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="id_password1">Password</label>-->
+<!--            {{ form.password1 }}-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="id_password2">Confirm Password</label>-->
+<!--            {{ form.password2 }}-->
+<!--        </div>-->
+
+<!--        <button type="submit" class="btn btn-primary">Register</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-end align-items-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 mt-5">
+                <h2 class="text-right mb-4 pr-4">Регистрация</h2>
+                <form method="post" action="{% url 'register' %}" class="mx-auto">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    <label for="id_username" class="col-sm-4 col-form-label text-right">Имя пользователя</label>
+                    <div class="col-sm-8">
+                        {{ form.username }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_email" class="col-sm-4 col-form-label text-right">Email</label>
+                    <div class="col-sm-8">
+                        {{ form.email }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_password1" class="col-sm-4 col-form-label text-right">Пароль</label>
+                    <div class="col-sm-8">
+                        {{ form.password1 }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_password2" class="col-sm-4 col-form-label text-right">Подтвердить пароль</label>
+                    <div class="col-sm-8">
+                        {{ form.password2 }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_city" class="col-sm-4 col-form-label text-right">Город</label>
+                    <div class="col-sm-8">
+                        {{ form.city }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_contact_phone" class="col-sm-4 col-form-label text-right">Контактный номер</label>
+                    <div class="col-sm-8">
+                        {{ form.contact_phone }}
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="id_age" class="col-sm-4 col-form-label text-right">Возраст</label>
+                    <div class="col-sm-8">
+                        {{ form.age }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_gender" class="col-sm-4 col-form-label text-right">Пол</label>
+                    <div class="col-sm-8">
+                        {{ form.gender }}
+                    </div>
+                </div>
+
+                <div class="form-group row address-group">
+                    <label for="id_address" class="col-sm-4 col-form-label text-right">Адрес проживания</label>
+                    <div class="col-sm-8">
+                        {{ form.address }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and other scripts -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>
