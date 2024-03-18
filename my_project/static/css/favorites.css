@@ -1,0 +1,233 @@
+/*body {*/
+/*    background-color: #f8f9fa; !* Цвет фона страницы *!*/
+/*    padding: 5px;*/
+/*    font-size: 12px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    min-height: 100vh;*/
+/*    overflow-y: scroll;*/
+/*    height: 100%;*/
+/*    margin: 0;*/
+/*    position: relative;*/
+/*    overflow-x: hidden;*/
+/*}*/
+
+/*h2 {*/
+/*    color: #007bff; !* Цвет заголовка *!*/
+/*    font-size: 16px; !* Уменьшенный размер заголовка *!*/
+/*    margin-bottom: 30px;*/
+/*}*/
+
+/*.container {*/
+/*    max-width: 1550px; !* Уменьшенная максимальная ширина контейнера *!*/
+/*    flex: 1;*/
+/*}*/
+
+
+/*.car-container {*/
+/*    border: 1px solid #dee2e6; !* Цвет рамки *!*/
+/*    margin: 5px 0;*/
+/*    padding: 10px;*/
+/*    background-color: #ffffff; !* Цвет фона блока *!*/
+/*    border-radius: 4px;*/
+/*    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); !* Тень блока *!*/
+/*}*/
+
+/*.car-image {*/
+/*    max-width: 250px; !* Максимальная ширина изображения *!*/
+/*    height: auto;*/
+/*    border-radius: 4px;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*.car-details {*/
+/*    flex-grow: 1; !* Занимает доступное пространство внутри flex-контейнера *!*/
+/*}*/
+
+/*.remove-btn {*/
+/*    background-color: #dc3545; !* Цвет кнопки удаления *!*/
+/*    color: #ffffff; !* Цвет текста на кнопке *!*/
+/*    border: none;*/
+/*    padding: 4px 8px;*/
+/*    border-radius: 2px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.remove-btn:hover {*/
+/*    background-color: #c82333; !* Измененный цвет кнопки при наведении *!*/
+/*}*/
+
+/*.car-details {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.row {*/
+/*    display: flex;*/
+/*}*/
+
+/*.col-md-6 {*/
+/*    width: 50%;*/
+/*}*/
+
+/*.footer-distributed {*/
+/*    margin-top: auto; !* Помещаем футер внизу страницы *!*/
+/*    margin-bottom: -110px; !* Отступ от последней машины *!*/
+/*}*/
+
+/*.navbar-brand {*/
+/*    margin-right: 750px;*/
+/*}*/
+
+/*.navbar-nav .nav-link {*/
+/*    font-size: 14px;*/
+/*}*/
+
+/*.navbar-nav {*/
+/*    justify-content: left;*/
+/*}*/
+
+/*.comparison-title {*/
+/*    margin-top: 10px;*/
+/*    font-size: 15px;*/
+/*}*/
+
+/*.comparison-title,*/
+/*.comparison-options label {*/
+/*    color: #0b5ed7;*/
+/*}*/
+
+
+
+body {
+    /*background-color: #f8f9fa;*/
+    background: url('/static/images/right-home-background.jpg');
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: scroll;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+h2 {
+    color: #007bff;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 1550px;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.sort-and-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: -140px;
+}
+
+#sort-select {
+    margin-left: 30px;
+
+}
+
+.btn-primary {
+    white-space: nowrap;
+}
+
+
+.car-container {
+    border: 1px solid #dee2e6;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.car-image {
+    max-width: 250px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.car-details {
+    flex-grow: 1;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
+.car-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.col-md-6 {
+    width: 50%;
+}
+
+.footer-distributed {
+    margin-top: auto;
+    margin-bottom: -110px;
+}
+
+.navbar-brand {
+    margin-right: 750px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 14px;
+}
+
+.navbar-nav {
+    justify-content: left;
+}
+
+.comparison-title {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.comparison-title,
+.comparison-options label {
+    color: #0b5ed7;
+}
+
+/* Добавьте этот стиль для увеличения шрифта остальных характеристик */
+.car-details p {
+    font-size: 16px; /* Регулируйте размер шрифта по вашему желанию */
+}
+
+
+
