@@ -1,0 +1,96 @@
+body {
+    /*background-color: #f8f9fa;*/
+    background: url('/static/images/right-home-background.jpg');
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: scroll;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1550px;
+    flex: 1;
+    margin-bottom: 20px;
+    margin-top: 1px; /* Добавленный отступ сверху */
+}
+
+#container-for-cars {
+    margin-top: 3px; /* Добавленный отступ сверху */
+}
+
+.car-container {
+    border: 1px solid #dee2e6;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.car-image {
+    max-width: 250px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.car-details {
+    flex-grow: 1;
+}
+
+.car-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-distributed {
+    margin-top: auto;
+    margin-bottom: -90px;
+}
+
+.navbar-brand {
+    margin-right: 750px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 14px;
+}
+
+.navbar-nav {
+    justify-content: left;
+}
+
+.comparison-title {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.search-form {
+    margin-top: 70px;
+}
+
+#car-search-form {
+    background-color: #f8f9fa; /* Цвет фона формы */
+    padding: 15px; /* Внутренний отступ формы */
+    border-radius: 5px; /* Закругление углов формы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень формы */
+}
+
+.input-group {
+    width: 100%; /* Занимает всю ширину доступного пространства */
+}
+
+.btn-search {
+    width: 100%; /* Занимает всю ширину доступного пространства */
+}
+
+.form-row .form-group {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
