@@ -1,0 +1,160 @@
+body {
+    background: url('/static/images/right-home-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;/* Размещаем изображение по центру */
+}
+
+#main {
+    padding: 140px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#real-estates-detail #author img {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    border: 5px solid #5c636a;
+    margin-bottom: 10px;
+}
+
+#real-estates-detail .sosmed-author i.fa {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #5c636a;
+    color: #5c636a;
+    padding-top: 6px;
+    margin-top: 10px;
+}
+
+.panel {
+    border: 1px solid #000;  /* Чёрная линия между панелями */
+}
+
+.panel-default {
+    border: 1px solid #000;
+    margin-top: -100px;
+}
+
+.panel-default .panel-heading {
+    background-color: #5c636a;
+    color: #000;
+}
+
+.panel-default .panel-body {
+    background-color: #5c636a;
+    border-top: 1px solid #000;
+    margin-top: -1px;
+    color: #000;  /* Задайте цвет текста, например, чёрный */
+}
+
+
+#real-estates-detail .slides li img {
+    height: 450px;
+}
+
+.navigation {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.navigation h1.title {
+    font-size: 30px;
+    margin: 0; /* Убираем внутренние отступы */
+}
+
+.custom-panel {
+    background-color: #5c636a;  /* Задайте желаемый цвет фона, например, серый */
+    border: 1px solid #000;
+    margin-top: -100px;
+}
+
+.custom-panel .panel-heading {
+    background-color: #5c636a;  /* Задайте цвет заголовка, например, серый */
+    border-bottom: 1px solid #000;  /* Задайте цвет нижней рамки заголовка, например, чёрный */
+}
+
+.custom-panel .panel-body {
+    max-height: 375px;  /* Задайте желаемую максимальную высоту */ /* Добавьте вертикальный скролл, если контент не помещается */
+}
+
+.table-th-block {
+    color: #000;  /* Задайте цвет текста в ячейках таблицы */
+}
+
+.table-th-block tbody tr td.active {
+    color: #000;
+    background-color: #5c636a;
+    border-color: #000;
+}
+
+.table-th-block tbody tr td {
+    color: #000;
+    background-color: #5c636a;
+    border-color: #000;
+}
+
+h4 {
+    text-align: center;
+    color: #000;
+}
+
+.table-th-block tbody td, .table-th-block tbody th {
+    border-color: #000 !important; /* Задайте цвет границ ячеек и заголовков */
+}
+
+.navigation img {
+    max-width: 100%; /* Фотография не будет превышать ширину родительского контейнера */
+    height: auto; /* Автоматическое определение высоты для сохранения пропорций */
+    display: block; /* Убираем пробелы вокруг изображения */
+    max-height: 50px; /* Устанавливаем максимальную высоту для визуального уменьшения изображения */
+}
+
+.navigation nav {
+    display: inline-block;
+}
+
+.navbar-brand{
+    margin-right: 10px; !important;
+}
+
+.navbar-brand{
+    margin-left: auto;
+}
+
+.navbar-nav {
+    margin-right: 10px !important;
+}
+
+
+.navbar-nav {
+    margin-left: 730px;
+}
+
+.navbar-brand {
+    margin-right: 15px; /* Измените значение согласно вашим требованиям */
+}
+
+
