@@ -1,0 +1,35 @@
+.navbar {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important; /* Цвет текста ссылок в навигации */
+}
+
+/*.navbar-brand {*/
+/*    color: #0a58ca; !* Установить цвет текста бренда на навигационной панели (белый, например) *!*/
+/*}*/
+
+/* CSS для сдвига навигационной панели влево */
+/*.navbar-nav {*/
+/*    justify-content: right;*/
+/*}*/
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-brand {
+    margin-right: 15px; /* Измените значение согласно вашим требованиям */
+}
+/* При прокрутке добавить фон навигации */
+/*.navbar-scrolled {*/
+/*    background-color: #ffffff; !* Замените на цвет фона, который вы хотите использовать после прокрутки *!*/
+/*    transition: background-color 0.3s ease; !* Плавный переход *!*/
+/*}*/
+
+
+
+
+
