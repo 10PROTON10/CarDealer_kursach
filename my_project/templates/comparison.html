@@ -1,0 +1,358 @@
+<!--{% load static %}-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Compare Cars</title>-->
+<!--    &lt;!&ndash; Подключение стилей Bootstrap и Slick Carousel &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">-->
+<!--    <link rel="stylesheet" href="{% static 'css/profile.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/favorites.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/footer.css' %}">-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>-->
+<!--    <script src="{% static 'js/comparison.js' %}"></script>-->
+<!--    &lt;!&ndash; Подключение ваших стилей &ndash;&gt;-->
+<!--    <style>-->
+<!--        body {-->
+<!--            overflow-y: scroll;-->
+<!--            height: 100%;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            position: relative;-->
+<!--            overflow-x: hidden;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            min-height: 100vh;-->
+<!--        }-->
+
+<!--        .navbar-brand {-->
+<!--            margin-right: 750px;-->
+<!--        }-->
+
+<!--        .navbar-nav .nav-link {-->
+<!--            font-size: 14px;-->
+<!--        }-->
+
+<!--        .navbar-nav {-->
+<!--            justify-content: left;-->
+<!--        }-->
+
+<!--        .navbar-nav .nav-item {-->
+<!--            margin-right: 15px;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            margin-top: -60px;-->
+<!--        }-->
+
+<!--        .car-carousel {-->
+<!--            margin-top: 80px;-->
+<!--            position: relative; /* Добавьте position: relative; для слайдера */-->
+<!--        }-->
+
+<!--        .card-img-top {-->
+<!--            height: 200px;-->
+<!--            object-fit: cover;-->
+<!--        }-->
+
+<!--        .comparison-title {-->
+<!--            margin-top: 10px;-->
+<!--            font-size: 15px;-->
+<!--        }-->
+
+<!--        .comparison-title,-->
+<!--        .comparison-options label {-->
+<!--            color: #0b5ed7;-->
+<!--        }-->
+
+<!--        .comparison-options {-->
+<!--            position: absolute;-->
+<!--            right: 1000px;-->
+<!--            margin-top: -40px;-->
+<!--            font-size: 15px;-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            margin-bottom: 70px;-->
+<!--            margin-left: 50px;-->
+<!--        }-->
+
+<!--        .footer-distributed {-->
+<!--            bottom: 0;-->
+<!--        }-->
+
+<!--        .content {-->
+<!--            margin-bottom: 90px; /* Замените 100px на высоту вашего слайдера */-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg">-->
+<!--    <a class="navbar-brand" href="{% url 'home' %}">Autoshop</a>-->
+<!--        <ul class="navbar-nav ml-auto">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="{% url 'profile' %}">Профиль</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Контакты</a>-->
+<!--            </li>-->
+<!--            {% if user.is_authenticated %}-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>-->
+<!--                </li>-->
+<!--            {% else %}-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{% url 'login' %}">Login</a>-->
+<!--                </li>-->
+<!--            {% endif %}-->
+<!--        </ul>-->
+<!--</nav>-->
+
+
+<!--<body>-->
+<!--<div class="content">-->
+<!--<h2 class="comparison-title">Сравнение автомобилей</h2>-->
+<!--    <div class="container">-->
+<!--            <div class="comparison-options">-->
+<!--            <label>-->
+<!--                <input type="checkbox" id="show-differences">-->
+<!--                Показать только отличия-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        {% if comparison_cars %}-->
+<!--            <div class="car-carousel">-->
+<!--                {% for comparison_car in comparison_cars %}-->
+<!--                <div class="card mb-4 shadow-sm">-->
+<!--                    <img class="card-img-top" src="{{ comparison_car.car.image }}" alt="{{ comparison_car.car.model }} Image">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">{{ comparison_car.car.brand }} {{ comparison_car.car.model }}</h5>-->
+<!--                        <p class="card-text year" data-characteristic="year">Year: {{ comparison_car.car.year }}</p>-->
+<!--                        <p class="card-text price" data-characteristic="price">Price: {{ comparison_car.car.price }}</p>-->
+<!--                        <p class="card-text description" data-characteristic="mileage">Mileage: {{ comparison_car.car.mileage }}</p>-->
+<!--                        <p class="card-text engine" data-characteristic="engine">Engine: {{ comparison_car.car.engine }}</p>-->
+<!--                        <p class="card-text engine-volume" data-characteristic="engine-volume">Engine Volume: {{ comparison_car.car.engine_volume }}</p>-->
+<!--                        <p class="card-text engine-power" data-characteristic="engine-power">Engine Power: {{ comparison_car.car.engine_power }}</p>-->
+<!--                        <p class="card-text transmission" data-characteristic="transmission">Transmission: {{ comparison_car.car.transmission }}</p>-->
+<!--                        <p class="card-text gears" data-characteristic="gears">Gears: {{ comparison_car.car.gears }}</p>-->
+<!--                        <p class="card-text drive" data-characteristic="drive">Drive: {{ comparison_car.car.get_drive_display }}</p>-->
+<!--                        <p class="card-text fuel-consumption" data-characteristic="fuel-consumption">Fuel Consumption: {{ comparison_car.car.fuel_consumption }}</p>-->
+<!--                        <p class="card-text body-type" data-characteristic="body-type">Body Type: {{ comparison_car.car.body_type }}</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--        &lt;!&ndash; Вставьте стрелки здесь &ndash;&gt;-->
+<!--        <div class="left-arrow"></div>-->
+<!--        <div class="right-arrow"></div>-->
+
+<!--        {% else %}-->
+<!--        <p>Нет выбранных автомобилей для сравнения.</p>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer class="footer-distributed">-->
+
+<!--			<div class="footer-left">-->
+
+<!--				<h3>Auto<span>Shop</span></h3>-->
+
+<!--				<p class="footer-links">-->
+<!--					<a href="#" class="link-1">Home</a>-->
+
+<!--					<a href="#">Blog</a>-->
+
+<!--					<a href="#">Pricing</a>-->
+
+<!--					<a href="#">About</a>-->
+
+<!--					<a href="#">Faq</a>-->
+
+<!--					<a href="#">Contact</a>-->
+<!--				</p>-->
+<!--			</div>-->
+
+<!--			<div class="footer-center">-->
+
+<!--				<div>-->
+<!--					<i class="fa fa-map-marker"></i>-->
+<!--					<p><span>444 S. Cedros Ave</span> Solana Beach, California</p>-->
+<!--				</div>-->
+
+<!--				<div>-->
+<!--					<i class="fa fa-phone"></i>-->
+<!--					<p>+1.555.555.5555</p>-->
+<!--				</div>-->
+
+
+<!--			</div>-->
+
+<!--			<div class="footer-right">-->
+
+<!--				<p class="footer-company-about">-->
+<!--					<span>About the company</span>-->
+<!--					Курсовая работа - автосалон-->
+<!--				</p>-->
+<!--                <div>-->
+<!--					<i class="fa fa-envelope"></i>-->
+<!--					<p><a href="mailto:support@company.com">support@company.com</a></p>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--</footer>-->
+<!--</body>-->
+
+<!--</html>-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение стилей Bootstrap и Slick Carousel -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/comparison.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static 'js/comparison.js' %}"></script>
+</head>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Autoshop</a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<body>
+<div class="content">
+<h2 class="comparison-title">Сравнение автомобилей</h2>
+    <div class="container">
+            <div class="comparison-options">
+            <label>
+                <input type="checkbox" id="show-differences">
+                Показать только отличия
+            </label>
+        </div>
+        {% if comparison_cars %}
+            <div class="car-carousel">
+                {% for comparison_car in comparison_cars %}
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src="{{ comparison_car.car.image }}" alt="{{ comparison_car.car.model }} Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ comparison_car.car.brand }} {{ comparison_car.car.model }}</h5>
+                        <p class="card-text year" data-characteristic="year">Год: {{ comparison_car.car.year }}</p>
+                        <p class="card-text price" data-characteristic="price">Цена: {{ comparison_car.car.price }}</p>
+                        <p class="card-text description" data-characteristic="mileage">Пробег: {{ comparison_car.car.mileage }}</p>
+                        <p class="card-text engine" data-characteristic="engine">Тип двигателя: {{ comparison_car.car.engine }}</p>
+                        <p class="card-text engine-volume" data-characteristic="engine-volume">Объем двигателя: {{ comparison_car.car.engine_volume }}</p>
+                        <p class="card-text engine-power" data-characteristic="engine-power">Мощность двигателя: {{ comparison_car.car.engine_power }}</p>
+                        <p class="card-text transmission" data-characteristic="transmission">Коробка передач: {{ comparison_car.car.transmission }}</p>
+                        <p class="card-text gears" data-characteristic="gears">Передачи: {{ comparison_car.car.gears }}</p>
+                        <p class="card-text drive" data-characteristic="drive">Привод: {{ comparison_car.car.get_drive_display }}</p>
+                        <p class="card-text fuel-consumption" data-characteristic="fuel-consumption">Расход топлива: {{ comparison_car.car.fuel_consumption }}</p>
+                        <p class="card-text body-type" data-characteristic="body-type">Тип кузова: {{ comparison_car.car.body_type }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        <!-- Вставьте стрелки здесь -->
+        <div class="left-arrow"></div>
+        <div class="right-arrow"></div>
+
+        {% else %}
+        <p>Нет выбранных автомобилей для сравнения.</p>
+        {% endif %}
+    </div>
+</div>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Auto<span>Shop</span></h3>
+
+				<p class="footer-links">
+
+					<a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+
+					<a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+
+					<a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+				</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>ул.Горького</span> г.Владимир</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+79616478537</p>
+				</div>
+
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>О компании</span>
+					Курсовая работа - автосалон
+				</p>
+                <div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+			</div>
+
+		</footer>
+</body>
+
+</html>
