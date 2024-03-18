@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение Bootstrap для стилей -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/favorites.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigationbar.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Autoshop</a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="sort-and-button-container">
+        <div class="sort-options">
+            <a href="{% url 'comparison_page' %}" class="btn btn-primary">Перейти к сравнению</a>
+            <!-- Добавление кнопки для сортировки -->
+            <select id="sort-select" onchange="sortFavoriteCars()">
+                <option value="default">Сортировка</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="year-asc">Year: Old to New</option>
+                <option value="year-desc">Year: New to Old</option>
+            </select>
+        </div>
+    </div>
+    <!-- Добавьте контейнер для отображения машин и выбора для сравнения -->
+        <div id="container-for-cars" class="container">
+        {% for favorite in favorite_cars %}
+            <div class="d-flex car-container">
+                <!-- Конец блока для квадратика и галочки -->
+                <img class="car-image" src="{{ favorite.car.image }}" alt="{{ favorite.car.model }} Image">
+                <div class="car-details">
+                    <h3>{{ favorite.car.brand }} {{ favorite.car.model }} - Year: {{ favorite.car.year }} - Price: {{ favorite.car.price }}</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Пробег: {{ favorite.car.mileage }}</p>
+                            <p>Тип двигателя: {{ favorite.car.engine }}</p>
+                            <p>Объем двигателя: {{ favorite.car.engine_volume }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Мощность двигателя: {{ favorite.car.engine_power }}</p>
+                            <p>Коробка передач: {{ favorite.car.transmission }}</p>
+                            <p>Передачи: {{ favorite.car.gears }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Привод: {{ favorite.car.drive }}</p>
+                            <p>Расход топлива: {{ favorite.car.fuel_consumption }}</p>
+                            <p>Тип кузова: {{ favorite.car.body_type }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <button class="remove-btn" onclick="removeFromFavorites({{ favorite.car.id }})">
+                            Remove
+                        </button>
+                        <button class="btn btn-primary" onclick="addToComparison({{ favorite.car.id }})">
+                            Добавить в сравнение
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Auto<span>Shop</span></h3>
+
+				<p class="footer-links">
+
+					<a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+
+					<a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+
+					<a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+				</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>ул.Горького</span> г.Владимир</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+79616478537</p>
+				</div>
+
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>О компании</span>
+					Курсовая работа - автосалон
+				</p>
+                <div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+			</div>
+
+		</footer>
+    <script src="{% static 'js/favorites.js' %}?v=2"></script>
+</body>
+</html>
+
+
+
+<!--    &lt;!&ndash; Добавьте контейнер для отображения машин &ndash;&gt;-->
+<!--    <div id="container-for-cars" class="container">-->
+<!--        {% for favorite in favorite_cars %}-->
+<!--            <div class="d-flex car-container">-->
+<!--                <img class="car-image" src="{{ favorite.car.image }}" alt="{{ favorite.car.model }} Image">-->
+<!--                <div class="car-details">-->
+<!--                    <h3>{{ favorite.car.brand }} {{ favorite.car.model }}</h3>-->
+<!--                    <p>Year: {{ favorite.car.year }}</p>-->
+<!--                    <p>Price: {{ favorite.car.price }}</p>-->
+<!--                    <p>Description: {{ favorite.car.description }}</p>-->
+<!--                    <p>Engine: {{ favorite.car.engine }}</p>-->
+<!--                    <button class="remove-btn" onclick="removeFromFavorites({{ favorite.car.id }})">-->
+<!--                        Remove-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
