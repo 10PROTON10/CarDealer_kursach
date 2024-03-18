@@ -1,0 +1,192 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/navigationbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <style>
+        .navbar-nav {
+            justify-content: left;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 15px; /* Вы можете настроить отступы по вашему желанию */
+        }
+    </style>
+    <title>User Profile</title>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'home' %}">Autoshop</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                </li>
+            {% endif %}
+        </ul>
+</nav>
+
+<div class="container">
+    <div id="main">
+        <div class="row" id="real-estates-detail">
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <header class="panel-title">
+                            <div class="text-center">
+                                <strong>Пользователь сайта</strong>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-center" id="author">
+<!--                            <img src="https://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">-->
+                            <img src="{% static 'images/avatarka.png' %}" class="img-fluid" alt="Аватар">
+                            <h3>{{ request.user.username }}</h3>
+                            <!-- Добавьте социальные сети, если есть данные -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="panel custom-panel">
+                    <div class="panel-body">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="detail">
+                                <h4>История профиля</h4>
+                                <table class="table table-th-block">
+                                    <tbody>
+                                        <tr><td class="active">Зарегистрирован:</td><td>{{ request.user.registration_date }}</td></tr>
+                                        <tr><td class="active">Последняя активность:</td><td>{{ request.user.last_login }}</td></tr>
+                                        <tr><td class="active">Город:</td><td>{{ request.user.city }}</td></tr>
+                                        <tr><td class="active">Адрес:</td><td>{{ request.user.address }}</td></tr>
+                                        <tr><td class="active">Имя:</td><td>{{ request.user.username }}</td></tr>
+                                        <tr><td class="active">Контактный телефон:</td><td>{{ request.user.contact_phone }}</td></tr>
+                                        <tr><td class="active">Адрес почты:</td><td>{{ request.user.email }}</td></tr>
+                                        <tr><td class="active">Пол:</td><td>{{ request.user.gender }}</td></tr>
+                                        <!-- Добавьте остальные поля, используя {{ request.user.field_name }} -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Auto<span>Shop</span></h3>
+
+				<p class="footer-links">
+
+					<a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+
+					<a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+
+					<a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+				</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>ул.Горького</span> г.Владимир</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+79616478537</p>
+				</div>
+
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>О компании</span>
+					Курсовая работа - автосалон
+				</p>
+                <div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+			</div>
+
+		</footer>
+</body>
+</html>
+
+
+<!--                        <ul id="myTab" class="nav nav-pills">-->
+<!--                            <li class="active"><a href="{% url 'profile-detail' pk=user_data.id %}" data-toggle="tab">О пользователе</a></li>-->
+<!--                        </ul>-->
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--    <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>-->
+<!--    <script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>-->
+
+<!--                            <small class="label label-warning">{{ request.user.country }}</small>-->
+<!--                            <p>{{ request.user.about_me }}</p>-->
+
+<!--<li class=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li>-->
+
+<!--                            <div class="tab-pane fade" id="contact">-->
+<!--                                <p></p>-->
+<!--                                <form role="form">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>Ваше имя</label>-->
+<!--                                        <input type="text" class="form-control rounded" placeholder="Укажите Ваше Имя">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>Ваш телефон</label>-->
+<!--                                        <input type="text" class="form-control rounded" placeholder="(+7)(095)123456">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>E-mail адрес</label>-->
+<!--                                        <input type="email" class="form-control rounded" placeholder="Ваш Е-майл">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="checkbox">-->
+<!--                                            <label>-->
+<!--                                                <input type="checkbox"> Согласен с условиями-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>Текст Вашего сообщения</label>-->
+<!--                                        <textarea class="form-control rounded" style="height: 100px;"></textarea>-->
+<!--                                        <p class="help-block">Текст сообщения будет отправлен пользователю</p>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <button type="submit" class="btn btn-success" data-original-title="" title="">Отправить</button>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+<!--                            </div>-->
