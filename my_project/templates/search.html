@@ -1,0 +1,188 @@
+{% load static %}
+<!-- cars_in_stock.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/navigationbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cars_in_stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <script src="{% static 'js/cars_in_stock.js' %}"></script>
+    <style>
+</style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Autoshop</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-form">
+        <form id="car-search-form" action="{% url 'search_page' %}" method="get">
+            <div class="form-row align-items-end">
+                <div class="form-group col-md-2">
+                    <label for="brand">Марка:</label>
+                    <select class="form-control form-control-sm" id="brand" name="brand">
+                        <!-- Опции для выбора марки будут добавлены динамически с использованием JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="price">Цена:</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" id="price_from" name="price_from" placeholder="От">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">-</span>
+                        </div>
+                        <input type="number" class="form-control" id="price_to" name="price_to" placeholder="До">
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="year">Год:</label>
+                    <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" id="year_from" name="year_from" placeholder="От">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">-</span>
+                        </div>
+                        <input type="number" class="form-control" id="year_to" name="year_to" placeholder="До">
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="mileage">Пробег:</label>
+                    <input type="number" class="form-control form-control-sm" id="mileage" name="mileage" placeholder="Пробег">
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary btn-search">Найти</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+        <!-- JavaScript код для загрузки брендов и добавления их в выпадающий список -->
+    <script>
+        const brandApiEndpoint = '/api/brands';
+        const brandSelect = document.getElementById('brand');
+
+        fetch(brandApiEndpoint)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand.id;
+                    option.text = brand.name;
+                    brandSelect.add(option);
+                });
+            })
+            .catch(error => console.error('Error fetching brands:', error));
+
+        // Функция для получения имени бренда по его id
+        function getBrandName(brandId) {
+            return brandData[brandId] || 'Unknown Brand';
+        }
+    </script>
+    <!-- Добавьте контейнер для отображения машин и выбора для сравнения -->
+        <div id="container-for-cars" class="container">
+        {% for car in search_cars_data %}
+            <div class="d-flex car-container">
+                <!-- Конец блока для квадратика и галочки -->
+                <img class="car-image" src="{{ car.image }}" alt="{{ car.model }} Image">
+                <div class="car-details">
+                    <h3>{{ car.brand }} {{ car.model }} - Year: {{ car.year }} - Price: {{ car.price }}</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Пробег: {{ car.mileage }}</p>
+                            <p>Тип двигателя: {{ car.engine }}</p>
+                            <p>Объем двигателя: {{ car.engine_volume }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Мощность двигателя: {{ car.engine_power }}</p>
+                            <p>Коробка передач: {{ car.transmission }}</p>
+                            <p>Передачи: {{ car.gears }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Привод: {{ car.drive }}</p>
+                            <p>Расход топлива: {{ car.fuel_consumption }}</p>
+                            <p>Тип кузова: {{ car.body_type }}</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <button class="btn btn-primary" onclick="addToFavorites({{ car.id }})">
+                            Добавить в избранное
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Auto<span>Shop</span></h3>
+
+				<p class="footer-links">
+
+					<a class="nav-link" href="{% url 'cars-in-stock' %}">Автомобили в наличии</a>
+
+					<a class="nav-link" href="{% url 'favorite-page' %}">Избранное</a>
+
+					<a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+				</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>ул.Горького</span> г.Владимир</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+79616478537</p>
+				</div>
+
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>О компании</span>
+					Курсовая работа - автосалон
+				</p>
+                <div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+			</div>
+
+		</footer>
+
+</body>
+</html>
